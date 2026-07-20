@@ -1,0 +1,35 @@
+#include <functional>
+#include <memory>
+
+#include "example_interfaces/msg/string.hpp"
+#include "rclcpp/rclcpp.hpp"
+
+class SmartphoneNode : public rclcpp::Node
+{
+public:
+  SmartphoneNode() : Node("smartphone_node")
+  {
+    subscription_ = this->create_subscription<example_interfaces::msg::String>(
+      "robot_news",
+      10,
+      std::bind(&SmartphoneNode::callback, this, std::placeholders::_1));
+
+    RCLCPP_INFO(this->get_logger(), "Smartphone node has started and is listening for news");
+  }
+
+private:
+  void callback(const example_interfaces::msg::String::SharedPtr msg) const
+  {
+    RCLCPP_INFO(this->get_logger(), "Received news: '%s'", msg->data.c_str());
+  }
+
+  rclcpp::Subscription<example_interfaces::msg::String>::SharedPtr subscription_;
+};
+
+int main(int argc, char * argv[])
+{
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<SmartphoneNode>());
+  rclcpp::shutdown();
+  return 0;
+}

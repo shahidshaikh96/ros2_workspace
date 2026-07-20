@@ -1,0 +1,10 @@
+build/
+install/
+log/
+.vscode/
+*.pyc
+__pycache__/
+Ctrl + O
+Enter
+Ctrl + X
+

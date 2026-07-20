@@ -1,0 +1,9 @@
+find_package(rclcpp REQUIRED)
+
+add_executable(cpp_node_act1 src/cpp_node_act1.cpp)
+ament_target_dependencies(cpp_node_act1 rclcpp)
+
+install(TARGETS
+  cpp_node_act1
+  DESTINATION lib/${PROJECT_NAME}
+)

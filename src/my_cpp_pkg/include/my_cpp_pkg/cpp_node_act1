@@ -1,0 +1,28 @@
+#include "rclcpp/rclcpp.hpp"
+
+class MyFirstNode : public rclcpp::Node
+{
+public:
+  MyFirstNode() : Node("my_cpp_node")
+  {
+    RCLCPP_INFO(this->get_logger(), "C++ ROS2 node has started");
+  }
+};
+
+int main(int argc, char * argv[])
+{
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<MyFirstNode>());
+  rclcpp::shutdown();
+  return 0;
+}
+
+find_package(rclcpp REQUIRED)
+
+add_executable(cpp_node_act1 src/cpp_node_act1.cpp)
+ament_target_dependencies(cpp_node_act1 rclcpp)
+
+install(TARGETS
+  cpp_node_act1
+  DESTINATION lib/${PROJECT_NAME}
+)
