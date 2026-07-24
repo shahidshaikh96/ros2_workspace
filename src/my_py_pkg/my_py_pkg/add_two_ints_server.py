@@ -2,6 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from example_interfaces.srv import AddTwoInts
+from functools import partial
 
  
  
@@ -18,7 +19,9 @@ class Addtwointsserver(Node): # MODIFY NAME
 
 def main(args=None):
     rclpy.init(args=args)
-    node = Addtwointsserver() # MODIFY NAME
+    node = Addtwointsserver() 
+    node = Addtwointsserver() 
+    node = Addtwointsserver()
     rclpy.spin(node)
     rclpy.shutdown()
  
