@@ -9,6 +9,10 @@ class NumberPublisher(Node):
 
     def __init__(self):
         super().__init__("number_publisher")
+        self.declare_parameter("number", 2)
+        self.declare_parameter("timer_period", 1.0)
+        self.number_ = self.get_parameter("number").value
+        self.timer_period_ = self.get_parameter("timer_period").value 
 
         # Publish on the "number" topic
         self.publisher_ = self.create_publisher(
