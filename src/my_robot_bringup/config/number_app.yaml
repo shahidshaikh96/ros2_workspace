@@ -1,0 +1,5 @@
+/my_robot_publisher:
+  
+  ros__parameters:
+    number: 10
+    timer_period: 0.5
